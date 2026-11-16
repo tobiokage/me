@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>aryan balyan</title>
+<meta name="description" content="aryan balyan: software developer ii at sap labs, bengaluru. backend systems and agentic ai.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@500;700&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;height:100%;overflow:hidden;background:#2a282c}
+canvas{display:block;touch-action:none}
+#links{position:fixed;left:0;top:0;width:0;height:0}
+#links a{position:absolute;display:block;font-size:0;color:transparent;touch-action:none;-webkit-tap-highlight-color:transparent}
+noscript{color:#b8bbc3;font:500 15px "Libre Franklin",Arial,sans-serif;display:block;padding:32px}
+noscript a{color:inherit}
+</style>
+</head>
+<body>
+<canvas id="sheet" aria-label="aryan balyan: me, experience, projects, skills, contact"></canvas>
+<div id="links"></div>
+<noscript>aryan balyan. software developer ii at sap labs, bengaluru. backend systems and agentic ai. <a href="mailto:aryanbalyan49@gmail.com">aryanbalyan49@gmail.com</a></noscript>
+<script>
+(()=>{
+'use strict';
+/* ---------------------------------------------------------------- content */
+const MAIL='aryanbalyan49@gmail.com';
+const li=s=>({t:'li',runs:[{s}]}), p=s=>({t:'p',runs:[{s}]}), h=s=>({t:'h',runs:[{s}]});
+const tree={name:'aryan balyan',kids:[
+  {name:'me',rich:[
+    [{s:"i'm aryan balyan. "},{s:'software developer ii',mark:true},{s:' at sap labs, bengaluru.'}],
+    [{s:'i build '},{s:'backend systems and agentic ai',mark:true},{s:' for Subscription Order Management / SAP BRIM: OData V4 APIs, event-driven order workflows, MCP servers, RAG pipelines and eval gates for agents.'}],
+    [{s:'on the side i built gloss, an '},{s:'offline-first billing platform',mark:true},{s:' running across 80 live stores, and a Qwen3 inference and serving engine from tensor primitives.'}],
+    [{s:'before that: research intern in voice intelligence at samsung research institute (sri-b).'}],
+    [{s:'B.E. electronics and instrumentation, BITS Pilani, 2019 to 2023, CGPA 8.0. JEE Advanced AIR 4996; JEE Main 99.84 percentile.'}],
+    {t:'p',gap:1,runs:[{s:'reach me at '},{s:MAIL,href:'mailto:'+MAIL},{s:'.'}]}
+  ]},
+  {name:'experience',kids:[
+    {name:'sap labs',href:'/exp/sap/'},
+    {name:'samsung research',href:'/exp/samsung/'}
+  ]},
+  {name:'projects',kids:[
+    {name:'gloss',href:'/proj/gloss/'},
+    {name:'qwen3 engine',href:'/proj/qwen3/'},
+    {name:'ai receptionist',href:'/proj/receptionist/'}
+  ]},
+  {name:'skills',rich:[
+    [{s:'languages',mark:true},{s:': Python, Go, Java, C++, SQL, ABAP, JavaScript, TypeScript.'}],
+    [{s:'ai / llm',mark:true},{s:': LangGraph, LangChain, PydanticAI, LiteLLM, MCP, A2A, RAG, vector search, LLM evals, SAP Joule, LiveKit, MLX, Metal.'}],
+    [{s:'backend',mark:true},{s:': PostgreSQL, SQLite, SAP HANA, OData V4, SAP RAP, FastAPI, Flask, Gin, REST APIs, event-driven design, idempotency, concurrency control.'}],
+    [{s:'cloud / ops',mark:true},{s:': SAP BTP, Kubernetes/Kyma, Docker, SAP Event Mesh, OpenTelemetry, MLflow, Aeval, Langfuse, Git, Linux.'}]
+  ]},
+  {name:'contact',kids:[{name:MAIL,href:'mailto:'+MAIL}]}
+]};
+const posts={
+'/exp/sap/':{blocks:[
+  p('software developer ii (sde2), backend & ai. jul 2023 to present, bengaluru.'),
+  p('subscription order management / sap brim.'),
+  h('backend'),
+  li('built OData V4 REST APIs for subscription orders on SAP RAP (CDS views, managed CRUD, custom actions) for a contract engine benchmarked at 250 contracts/sec, scaling linearly with app server instances behind Web Dispatcher.'),
+  li('enhanced asynchronous order-distribution workflows as a state machine (Open, In Process, Finished, Failed, Waiting) with asynchronous external confirmations, routing subscription events to 9+ downstream billing and finance systems.'),
+  li('scaled mass-run item selection 33× (30 to 1,000 items) by moving processing to a background framework with parallel work packages, so users process 1,000+ sales documents in a single run.'),
+  li('integrated subscription orders with downstream charging, revenue accounting, trade compliance and CPQ systems over SOAP, RFC/qRFC and OData, replicating provider contracts to Convergent Charging via a Java SDK.'),
+  li('published asynchronous business events over SAP Event Mesh (AMQP/MQTT) for entitlement provisioning, designing consumers for out-of-order, non-sequenced delivery.'),
+  h('agentic ai'),
+  li('shipped 4+ agentic AI applications on SAP BTP, including the SOM AI Agent with 12 LangChain tools over S/4HANA OData and the Recurring Receivables Assistant, coordinating Collections, Credit Insights and Dispute agents through stateful LangGraph workflows and JSON-RPC A2A.'),
+  li('built MCP servers that generate tools from OData and OpenAPI metadata; routed agent API calls through an Agent Gateway with OAuth token exchange, principal propagation and tenant-level policies.'),
+  li('engineered RAG pipelines on SAP HANA Vector Engine with chunking, embeddings, HNSW indexing, hybrid semantic and keyword retrieval, and metadata filtering to ground answers in enterprise subscription and contract data.'),
+  li('established Aeval regression testing and CI/CD quality gates across correctness, hallucination, safety and memory, combining mocked tools, deterministic assertions and LLM-as-judge scoring, blocking merges on failures.'),
+  li('integrated SAP Agent Memory Service with LangGraph checkpointing to persist chat history, user knowledge and workflow snapshots, enabling semantic recall, cross-session continuity and resumable human-in-the-loop workflows.'),
+  li('instrumented agents with OpenTelemetry and continuous production evaluations of response quality, tool selection and argument correctness; analyzed completion rates, failures, token consumption and costs via Cloud ALM and Signavio.'),
+  li('eliminated context-overflow failures by pruning 60-field OData records to a 7-field whitelist and adding a request-scoped file cache that passes file IDs to tools, keeping multi-MB document payloads out of the LLM context.')
+]},
+'/exp/samsung/':{blocks:[
+  p('research intern, voice intelligence. samsung research institute (sri-b), bengaluru. jul 2022 to dec 2022.'),
+  li('built a Haystack-based retriever-reader question-answering system with a HuggingFace RoBERTa reader for Bixby Diary.'),
+  li('converted trained .h5 weights to TensorFlow Lite for on-device Android inference.'),
+  li('integrated retrieval and question answering into the Android application through Flask APIs.')
+]},
+'/proj/gloss/':{blocks:[
+  p('offline-first billing & operations platform. Go, PostgreSQL, Flutter, SQLite, HDFC payments.'),
+  li('architected and built multi-tenant Gloss end-to-end, deployed across 80 live stores handling up to 75K bills/day; sustained 200 req/s across transactional billing and offline-sync workloads at p95 <250 ms with <0.1% failures.'),
+  li('designed at-least-once synchronization with idempotent effects, persisting client mutations atomically into an ordered SQLite operation log and replaying contiguous batches against row-locked per-device cursors so retries never double-apply.'),
+  li('prevented duplicate bills, double billing, bill-number races and lost updates using stable UUIDs, canonical request hashing, PostgreSQL SERIALIZABLE transactions, row locks, uniqueness constraints and optimistic versioning.'),
+  li('kept the server authoritative for pricing, discounts, GST and commissions using integer minor units and basis points with exact remainders, snapshotting catalogue and commission state so historical bills stay immutable and auditable.'),
+  li('built the HDFC payment terminal integration with Sale, Status and Cancel flows, AES-256-CBC encryption/decryption, authenticated headers and backend-controlled reconciliation of terminal payment states.')
+]},
+'/proj/qwen3/':{blocks:[
+  p('qwen3 inference & serving engine. Python, MLX, C++, Metal, Apple Silicon.'),
+  li('built a Qwen3 inference engine from tensor primitives with Transformer layers, autoregressive generation and sampling; KV-cache reuse sped up Qwen3-0.6B decoding 9.4× (5.01 to 47.26 tokens/s) on Apple Silicon GPUs via Metal.'),
+  li('optimized Qwen3-4B with packed INT4 projections, fused RMSNorm/RoPE/SwiGLU and SIMD-tiled matmul, reaching about 2.4× decode and 6.8× prefill throughput versus unpacked-weight and untiled kernel baselines.'),
+  li('built vLLM-inspired serving with continuous batching, chunked prefill, paged KV allocation and paged FlashAttention, cutting peak KV storage by 47% and p95 decode-step latency by 56% versus dense KV reconstruction.'),
+  li('implemented sparse MoE routing and greedy speculative decoding with cache rollback; built a coding-agent harness with validated tools, checkpoint/resume, context compaction and isolated branch evaluation.'),
+  li('validated numerical parity and guided optimizations through controlled benchmarks, GPU profiling and compute/memory roofline analysis.')
+]},
+'/proj/receptionist/':{blocks:[
+  p('ai receptionist & manager insights agent. Python, LiveKit, LangGraph/LangChain, FastAPI, Go, PostgreSQL.'),
+  li('built a real-time voice agent with LiveKit speech-to-text, LLM tool routing and text-to-speech; integrated Gloss reporting APIs for conversational queries on collections, payments, commissions, expenses, bills and staff reporting.'),
+  li('enforced a read-only, allowlisted tool boundary: tenant-scoped reporting APIs query controlled SQL views, keeping database credentials and arbitrary SQL outside the model while preserving backend authority over financial data.'),
+  li('implemented three-layer conversational memory: dialogue history, store/staff/tool context, and a session-level reporting cache/prefetch, resolving follow-up queries without re-asking for dates, store identifiers or metrics.')
+]}
+};
+
+/* ------------------------------------------------------------------ utils */
+const PAPER='#2a282c',INK='#b8bbc3',RED='#ff0000',SEED=7;
+const FONT='"Libre Franklin","Helvetica Neue",Arial,sans-serif';
+const PI=Math.PI,TAU=PI*2;
+const clamp=(v,a,b)=>v<a?a:v>b?b:v,lerp=(a,b,t)=>a+(b-a)*t;
+const easeOut=t=>1-Math.pow(1-t,3),easeIO=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+function rng(seed){let s=seed>>>0;return()=>{s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function hash(a,b,c=0){let v=Math.imul(a|0,374761393)+Math.imul(b|0,668265263)+Math.imul(c|0,1274126177)|0;v=Math.imul(v^v>>>13,1274126177);return((v^v>>>16)>>>0)/4294967296}
+function n1(x,s=0){const i=Math.floor(x),f=x-i,u=f*f*(3-2*f);return lerp(hash(i,0,s),hash(i+1,0,s),u)*2-1}
+function n2(x,y,s=0){const i=Math.floor(x),j=Math.floor(y),fx=x-i,fy=y-j,u=fx*fx*(3-2*fx),v=fy*fy*(3-2*fy);return lerp(lerp(hash(i,j,s),hash(i+1,j,s),u),lerp(hash(i,j+1,s),hash(i+1,j+1,s),u),v)}
+const hit=(a,b,m=0)=>a.x<b.x+b.w+m&&b.x<a.x+a.w+m&&a.y<b.y+b.h+m&&b.y<a.y+a.h+m;
+const distRect=(x,y,r)=>Math.hypot(Math.max(r.x-x,0,x-(r.x+r.w)),Math.max(r.y-y,0,y-(r.y+r.h)));
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* --------------------------------------------------------------- geometry */
+const Q=(a,c,b,u)=>{const v=1-u;return{x:v*v*a.x+2*v*u*c.x+u*u*b.x,y:v*v*a.y+2*v*u*c.y+u*u*b.y}};
+function quadLimb(a,c,b,w0,w1,t0,t1,n){const pts=[];n=n||Math.max(4,Math.round(Math.hypot(b.x-a.x,b.y-a.y)/5));for(let i=0;i<=n;i++){const u=i/n,q=Q(a,c,b,u);pts.push({x:q.x,y:q.y,w:lerp(w0,w1,Math.pow(u,.8)),t:lerp(t0,t1,u)})}return{p:pts}}
+function limbPath(ctx,L,g){const src=L.p;if(src[0].t>g||src.length<2)return;const pts=[];for(let i=0;i<src.length;i++){if(src[i].t<=g)pts.push(src[i]);else{const a=src[i-1],b=src[i],f=(g-a.t)/((b.t-a.t)||1);pts.push({x:lerp(a.x,b.x,f),y:lerp(a.y,b.y,f),w:lerp(a.w,b.w,f)});break}}
+  const n=pts.length;if(n<2)return;
+  const nr=i=>{const a=pts[Math.max(0,i-1)],b=pts[Math.min(n-1,i+1)];let dx=b.x-a.x,dy=b.y-a.y;const l=Math.hypot(dx,dy)||1;return[-dy/l,dx/l]};
+  for(let i=0;i<n;i++){const[nx,ny]=nr(i),r=pts[i].w/2;i?ctx.lineTo(pts[i].x+nx*r,pts[i].y+ny*r):ctx.moveTo(pts[i].x+nx*r,pts[i].y+ny*r)}
+  {const[nx,ny]=nr(n-1),a=Math.atan2(ny,nx);ctx.arc(pts[n-1].x,pts[n-1].y,pts[n-1].w/2,a,a-PI,true)}
+  for(let i=n-1;i>=0;i--){const[nx,ny]=nr(i),r=pts[i].w/2;ctx.lineTo(pts[i].x-nx*r,pts[i].y-ny*r)}
+  ctx.closePath()}
+function almond(ctx,x,y,a,len,wid){const c=Math.cos(a),s=Math.sin(a),h=len/2;ctx.moveTo(x+c*h,y+s*h);ctx.quadraticCurveTo(x-s*wid,y+c*wid,x-c*h,y-s*h);ctx.quadraticCurveTo(x+s*wid,y-c*wid,x+c*h,y+s*h)}
+function spray(a,c,b,u0,u1,n,size,t,r){const L=[];for(let i=0;i<n;i++){const u=lerp(u0,u1,n>1?i/(n-1):.5),q=Q(a,c,b,u),q2=Q(a,c,b,Math.min(1,u+.02)),ang=Math.atan2(q2.y-q.y,q2.x-q.x),sd=i%2?1:-1,len=size*(.85+.4*r())*lerp(1,.7,i/n),la=ang+sd*(.55+r()*.4);L.push({x:q.x+Math.cos(la)*len*.45,y:q.y+Math.sin(la)*len*.45,a:la,len,wid:len*(.42+.12*r())})}return{t,leaves:L}}
+function cluster(x,y,R,t,r,a=.85,subs){const s=[R*(r()-.5)*.15,R*(r()-.5)*.15,R*.75,a*(.88+.24*r())],m=subs??3+Math.floor(r()*2),ph=r()*TAU;for(let i=0;i<m;i++){const an=ph+i/m*TAU+(r()-.5)*1.2,d=R*(.4+.35*r());s.push(Math.cos(an)*d,Math.sin(an)*d*.85,R*.75*(.5+.26*r()),a*(.6+.3*r()))}return{x,y,R,t,subs:s}}
+function blob(x,y,rad,r,verts=8,jag=.22,squash=1){const pts=[],rot=r()*PI,c=Math.cos(rot),s=Math.sin(rot);for(let i=0;i<verts;i++){const a=i/verts*TAU,d=rad*(1+(r()-.5)*2*jag),px=Math.cos(a)*d,py=Math.sin(a)*d*squash;pts.push(x+px*c-py*s,y+px*s+py*c)}return pts}
+function blobPath(ctx,pts){const n=pts.length/2;ctx.moveTo((pts[2*n-2]+pts[0])/2,(pts[2*n-1]+pts[1])/2);for(let i=0;i<n;i++){const j=(i+1)%n;ctx.quadraticCurveTo(pts[2*i],pts[2*i+1],(pts[2*i]+pts[2*j])/2,(pts[2*i+1]+pts[2*j+1])/2)}ctx.closePath()}
+let sprite=null;
+function blobSprite(){if(sprite)return sprite;sprite=document.createElement('canvas');sprite.width=sprite.height=128;const c=sprite.getContext('2d'),g=c.createRadialGradient(64,64,0,64,64,64);for(let i=0;i<=16;i++){const u=i/16;g.addColorStop(u,`rgba(0,255,0,${Math.pow(1-u*u,2).toFixed(4)})`)}c.fillStyle=g;c.fillRect(0,0,128,128);return sprite}
+const SPR=1.85;
+function drawGeo(ctx,geo,g,which){const ok=o=>which==='base'?!o.kid:o.kid===which;
+  ctx.globalCompositeOperation='source-over';ctx.fillStyle=RED;ctx.beginPath();
+  for(const L of geo.limbs)if(ok(L))limbPath(ctx,L,g);ctx.fill('nonzero');
+  ctx.beginPath();
+  for(const S of geo.sprays){if(!ok(S))continue;const k=clamp((g-S.t)/.05,0,1);if(k<=0)continue;const e=easeOut(k);for(const l of S.leaves)almond(ctx,l.x,l.y,l.a,l.len*e,l.wid*e)}
+  ctx.fill();
+  if(which==='base'){
+    if(geo.polys&&geo.polys.length){ctx.beginPath();for(const pp of geo.polys)blobPath(ctx,pp);ctx.fill()}
+    if(geo.dashes){ctx.strokeStyle=RED;ctx.lineCap='round';for(const d of geo.dashes){ctx.lineWidth=d[4];ctx.beginPath();ctx.moveTo(d[0],d[1]);ctx.lineTo(d[2],d[3]);ctx.stroke()}}
+    ctx.globalCompositeOperation='lighter';const sp=blobSprite();
+    for(const C of geo.clusters){const k=clamp((g-C.t)/.09,0,1);if(k<=0)continue;const s=C.subs;for(let i=0;i<s.length;i+=4){const rr=s[i+2]*SPR*(.75+.25*k);ctx.globalAlpha=Math.min(1,s[i+3]*k);ctx.drawImage(sp,C.x+s[i]-rr,C.y+s[i+1]-rr,rr*2,rr*2)}}
+    ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over'}}
+function geoBox(geo){let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;const add=(x,y,m)=>{x0=Math.min(x0,x-m);x1=Math.max(x1,x+m);y0=Math.min(y0,y-m);y1=Math.max(y1,y+m)};
+  for(const L of geo.limbs)if(!L.kid)for(const q of L.p)add(q.x,q.y,q.w);
+  for(const S of geo.sprays)if(!S.kid)for(const l of S.leaves)add(l.x,l.y,l.len);
+  for(const C of geo.clusters)for(let i=0;i<C.subs.length;i+=4)add(C.x+C.subs[i],C.y+C.subs[i+1],C.subs[i+2]*SPR);
+  for(const pp of geo.polys||[])for(let i=0;i<pp.length;i+=2)add(pp[i],pp[i+1],2);
+  for(const d of geo.dashes||[]){add(d[0],d[1],2);add(d[2],d[3],2)}
+  return{x:Math.floor(x0-4),y:Math.floor(y0-4),w:Math.ceil(x1-x0+8),h:Math.ceil(y1-y0+8)}}
+function geoCache(geo){if(geo.cache&&geo.cache.dpr===dpr)return geo.cache;const b=geoBox(geo);if(!(b.w>0&&b.h>0))return null;const c=document.createElement('canvas');c.width=Math.ceil(b.w*dpr);c.height=Math.ceil(b.h*dpr);const x=c.getContext('2d');x.setTransform(dpr,0,0,dpr,-b.x*dpr,-b.y*dpr);drawGeo(x,geo,1.3,'base');return geo.cache={cv:c,x:b.x,y:b.y,w:c.width/dpr,h:c.height/dpr,dpr}}
+
+/* ----------------------------------------------------------------- state */
+const cv=document.getElementById('sheet'),linkBox=document.getElementById('links');
+const meas=document.createElement('canvas').getContext('2d');
+let vw=0,vh=0,dpr=1,fs=15,narrow=false,P=null,inset=20,frameW=16;
+const font=(px,w=500)=>`${w} ${px}px ${FONT}`;
+const tw=(s,w=500)=>{meas.font=font(fs,w);return meas.measureText(s).width};
+const lh=()=>Math.round(fs*1.6);
+let ID=1;
+class Node{constructor(d,parent){this.id=ID++;this.name=d.name;this.parent=parent;this.depth=parent?parent.depth+1:0;const post=d.href&&posts[d.href];this.isPost=!!post;this.href=post?null:d.href||null;this.doc=d.doc||null;
+  const blocks=d.rich?d.rich.map(r=>Array.isArray(r)?{t:'p',runs:r}:r):post?post.blocks:null;
+  this.kids=d.kids?d.kids.map(k=>new Node(k,this)):blocks?[new Node({name:d.name+' (text)',doc:blocks},this)]:[];
+  this.isDir=this.kids.length>0;this.open=false;this.u=0;this.g=0;this.fold=1;this.foldU=1;this.typed=0;this.t=0;this.branch=null;this.geo=null;this.twig=null;this.rect=null;this.align='left'}}
+const root=new Node(tree,null);root.open=true;
+let active=root,hoverNode=null,hoverLink=null,hoverBack=false;
+const cam={x:0,y:0,tx:0,ty:0};
+let hits=[],links=[],need=true,backBox=null;
+
+/* ----------------------------------------------------------- doc layout */
+const docCache=new Map();
+function layoutDoc(n){const W=n.parent.isPost?(narrow?Math.min(vw-56,360):440):(narrow?Math.min(vw-70,300):330),key=n.id+'|'+fs+'|'+W;if(docCache.has(key))return docCache.get(key);
+  const L=lh(),sp=tw(' ');let y=0,c=0;const lines=[];
+  n.doc.forEach((b,bi)=>{const prev=n.doc[bi-1];if(bi>0)y+=Math.round(L*(b.t==='li'&&prev.t==='li'?.18:b.t==='h'?.95:.55));if(b.gap)y+=Math.round(L*b.gap);
+    const wt=b.t==='h'?700:500,indent=b.t==='li'?Math.round(fs*1.1):0,units=[];let endsSpace=true;
+    b.runs.forEach((run,ri)=>{const glue=units.length&&!endsSpace&&!/^\s/.test(run.s);endsSpace=/\s$/.test(run.s);run.s.split(/\s+/).forEach((word,wi)=>{if(!word)return;const tok={s:word,href:run.href||null,mark:run.mark?bi*1000+ri+1:0,w:tw(word,wt)};if(wi===0&&glue)units[units.length-1].push(tok);else units.push([tok])})});
+    let line=null;const mk=first=>({y,segs:[],bullet:first&&b.t==='li',kind:b.t,end:indent});
+    for(const u of units){if(!line)line=mk(true);const uw=u.reduce((a,t)=>a+t.w,0);let x=line.segs.length?line.end+sp:indent;if(line.segs.length&&x+uw>W){lines.push(line);y+=L;line=mk(false);x=indent}
+      for(const t of u){line.segs.push({s:t.s,href:t.href,mark:t.mark,w:t.w,x,c0:c});x+=t.w;c+=t.s.length}line.end=x;c+=1}
+    if(line){lines.push(line);y+=L}});
+  const out={lines,w:W,h:Math.max(L,y),chars:Math.max(1,c),lh:L};docCache.set(key,out);return out}
+
+/* ---------------------------------------------------------------- layout */
+function params(){const H=vh*.78,W=narrow?clamp(vw*.145,46,62):clamp(vh*.135,84,160);return{H,W,bot:H*.31,top:H*1.05,trunkW:narrow?6.5:clamp(vh*.0125,8,15),R:narrow?W*.36:W*.31,leaf:narrow?6.4:clamp(vh*.0112,7.5,12),sc:narrow?.82:clamp(vh/800,.9,1.4)}}
+const rootSpot=()=>({x:Math.round(narrow?vw*.5:vw*.4),y:Math.round(vh*.9)});
+function crownHalf(hh,side){const c=(hh-P.bot)/(P.top-P.bot);if(c<=0||c>=1)return 0;return P.W*Math.pow(Math.sin(PI*Math.pow(c,.86)),.6)*(1+.12*n1(c*5.5,side>0?3:8))}
+function curvePts(o,a0,a1,len,wob,r){const T=a0*.55+a1*.45,e={x:o.x+len*Math.cos(T),y:o.y+len*Math.sin(T)},c1={x:o.x+len*.42*Math.cos(a0),y:o.y+len*.42*Math.sin(a0)},c2={x:e.x-len*.3*Math.cos(a1),y:e.y-len*.3*Math.sin(a1)},n=Math.max(12,Math.round(len/4)),f1=1.2+r()*1.4,p1=r()*TAU,f2=3+r()*3,p2=r()*TAU,raw=[];
+  for(let i=0;i<=n;i++){const t=i/n,v=1-t;raw.push({x:v*v*v*o.x+3*v*v*t*c1.x+3*v*t*t*c2.x+t*t*t*e.x,y:v*v*v*o.y+3*v*v*t*c1.y+3*v*t*t*c2.y+t*t*t*e.y,t})}
+  return raw.map((q,i)=>{const a=raw[Math.max(0,i-1)],b=raw[Math.min(n,i+1)];let dx=b.x-a.x,dy=b.y-a.y;const l=Math.hypot(dx,dy)||1;dx/=l;dy/=l;const off=(Math.sin(q.t*f1*PI+p1)+.35*Math.sin(q.t*f2*PI+p2))*wob*len*Math.min(1,q.t*4);return{x:q.x-dy*off,y:q.y+dx*off,t:q.t,tx:dx,ty:dy}})}
+function along(pts,t){const f=clamp(t,0,1)*(pts.length-1),i=Math.min(pts.length-2,Math.floor(f)),k=f-i,a=pts[i],b=pts[i+1];return{x:lerp(a.x,b.x,k),y:lerp(a.y,b.y,k),tx:a.tx,ty:a.ty}}
+function rectFor(k,tip,al){if(k.doc){const d=layoutDoc(k),pad=fs*.5;return{x:al==='right'?tip.x-pad-d.w:tip.x+pad,y:tip.y-d.lh/2,w:d.w,h:d.h}}const w=tw(k.name+'.',700),hh=fs*1.25,pad=fs*.5;return{x:al==='right'?tip.x-pad-w:tip.x+pad,y:tip.y-hh/2,w,h:hh}}
+function twigGeo(node,k,limbs,sprays,r){const from=k.twig.from;let to=k.twig.to;const d=Math.hypot(to.x-from.x,to.y-from.y)||1,cut=Math.min(4,d*.1);to={x:to.x-(to.x-from.x)/d*cut,y:to.y-(to.y-from.y)/d*cut};const dx=(to.x-from.x)/d,sag=d*(node===root?.06:.1),c={x:(from.x+to.x)/2,y:(from.y+to.y)/2+sag*(Math.abs(dx)>.3?1:.3)},dt=node===root?.06:.04;
+  const L=quadLimb(from,c,to,(node===root?4.8:2.4)*P.sc,1.3*P.sc,k.t,k.t+dt);L.kid=k;limbs.push(L);if(k.doc)return;
+  const S=spray(from,c,to,node===root?.5:.3,node===root?.8:.62,node===root?4+Math.floor(r()*2):3,P.leaf*(node===root?1.05:.95),k.t+dt*.5,r);S.kid=k;sprays.push(S)}
+
+function buildRoot(){const r=rng(SEED*7919+13),H=P.H,limbs=[],clusters=[],sprays=[];
+  const pts=curvePts({x:0,y:0},-PI/2,-PI/2,H,.004,r);root.branch={pts,len:H};
+  const tx=hh=>along(pts,clamp(hh/H,0,1)).x;
+  limbs.push({p:pts.map(q=>{const A=clamp((q.t*H-P.bot)/(H-P.bot),0,1);return{x:q.x,y:q.y,t:q.t*.98,w:(P.trunkW*Math.pow(1-.8*q.t,1.15)*(1+1.1*Math.exp(-q.t*30))*(1-.55*A)+1.1)*2}})});
+  for(let i=0;i<4;i++){const s=i%2?1:-1,x0=s*P.trunkW*.25,len=P.trunkW*(1.3+r()*1.4);limbs.push(quadLimb({x:x0,y:-P.trunkW*.6},{x:x0+s*len*.5,y:-1},{x:x0+s*len,y:1.5},P.trunkW,1.8,0,.03,6))}
+  /* roots underground */
+  const rr=rng(5151),sc=narrow?.85:clamp(vh/900,.9,1.3);
+  const grow=(x,y,a,len,w,t,depth)=>{const n=Math.max(4,Math.round(len/5)),ph=rr()*10,pp=[{x,y,w,t}],tr=[{x,y,a}];for(let i=1;i<=n;i++){const u=i/n;a+=n1(u*3+ph,61)*.16+(PI/2-a)*.035;x+=Math.cos(a)*len/n;y=Math.max(3,y+Math.sin(a)*len/n);pp.push({x,y,w:Math.max(1.2,lerp(w,w*.18,Math.pow(u,.7))),t:t+u*.08});tr.push({x,y,a})}limbs.push({p:pp});if(depth>=3)return;const m=depth===0?3+Math.floor(rr()*3):1+Math.floor(rr()*3);for(let j=0;j<m;j++){const u=.18+rr()*.66,q=tr[Math.floor(u*n)],sd=rr()<.5?-1:1;grow(q.x,q.y,q.a+sd*(.45+rr()*.6),len*(.35+rr()*.35)*(1-u*.4),lerp(w,w*.18,u)*.75,t+u*.08,depth+1)}};
+  const nr=6+Math.floor(rr()*3);for(let i=0;i<nr;i++){const j=i/(nr-1);grow((j-.5)*P.trunkW*.9,2,lerp(PI*.94,PI*.06,j)+(rr()-.5)*.2,(110+rr()*240)*sc*(.55+.45*Math.sin(PI*j)),P.trunkW*(.9+rr()*.4),.02,0)}
+  /* crown */
+  const cl=[],Pn=P.W*.5;
+  for(let i=0;i<7000&&cl.length<500;i++){const hh=lerp(P.bot,P.top,r()),sd=r()<.5?-1:1,half=crownHalf(hh,sd);if(half<=2)continue;const R=P.R*(.75+.45*r())*(.6+.4*Math.min(1,half/(P.W*.7))),x=tx(hh)+sd*r()*Math.max(0,half-R*.5),y=-hh;
+    if(hh+R*.55>P.top||hh-R*.45<P.bot)continue;if(n2(x/Pn,y/Pn,17)>.66&&Math.abs(x-tx(hh))<half-R*.9)continue;if(cl.some(o=>Math.hypot(o.x-x,o.y-y)<(o.R+R)*.8))continue;cl.push({x,y,R,h:hh})}
+  for(const c of cl){const dx=c.x-tx(c.h),h0=clamp(c.h-Math.abs(dx)*.85-4,P.bot*.9,H*.97),a={x:tx(h0),y:-h0},t1=clamp(c.h/H,0,1)*.97,t0=clamp(h0/H,0,1)*.97;
+    limbs.push(quadLimb(a,{x:lerp(a.x,c.x,.55),y:lerp(a.y,c.y,.5)+Math.abs(c.x-a.x)*.12},{x:c.x,y:c.y},(2.2+r())*P.sc,1.1*P.sc,t0,t1));
+    const m=1+Math.floor(r()*3);for(let j=0;j<m;j++){const an=Math.atan2(c.y-a.y,c.x-a.x)+(r()-.5)*1.7,d=c.R*(.55+r()*.45),e={x:c.x+Math.cos(an)*d,y:c.y+Math.sin(an)*d};limbs.push(quadLimb({x:c.x,y:c.y},{x:lerp(c.x,e.x,.5)+(r()-.5)*6,y:lerp(c.y,e.y,.5)-r()*4},e,1.25*P.sc,.8,t1,t1+.02,5))}
+    clusters.push(cluster(c.x,c.y,c.R,t1+.01,r))}
+  /* section twigs */
+  const kids=root.kids,n=kids.length;let side=1;const sp=rootSpot();
+  kids.forEach((k,i)=>{const t=n===1?.7:lerp(.46,.9,i/(n-1)),q=along(pts,t),hh=t*H,ang=side>0?-(.05+r()*.12):PI+(.05+r()*.12),w=tw(k.name+'.',700);
+    let len=crownHalf(hh,side)+P.R*.6+(narrow?14:34);const room=(side>0?vw-inset-sp.x:sp.x-inset)-w-fs*.5-8;len=Math.max(24,Math.min(len,room));
+    const tip={x:q.x+Math.cos(ang)*len,y:q.y+Math.sin(ang)*len};k.t=t*.98;k.side=side;k.twig={from:{x:q.x,y:q.y},to:tip,angle:ang};k.align=side>0?'left':'right';k.rect=rectFor(k,tip,k.align);twigGeo(root,k,limbs,sprays,r);side=-side});
+  root.geo={limbs,clusters,sprays,crown:cl}}
+
+function obstacles(node){const pts=[],rects=[],soft=[];const walk=n=>{if(n===node||!n.branch||!n.open)return;for(const q of n.branch.pts)pts.push(q);for(const k of n.kids){if(k.twig)pts.push(k.twig.from,k.twig.to);if(k.rect&&k!==node)rects.push(k.rect);if(k.isDir)walk(k)}};walk(root);for(const c of root.geo.crown)soft.push(c);return{pts,rects,soft}}
+const ptsIn=(pts,r,m)=>{let c=0;for(const q of pts)if(q.x>r.x-m&&q.x<r.x+r.w+m&&q.y>r.y-m&&q.y<r.y+r.h+m)c++;return c};
+function placeKids(node,pts,obs,r){const kids=node.kids,n=kids.length,placed=[],out=[];let conflicts=0,side=r()<.5?-1:1;
+  kids.forEach((k,i)=>{const base=k.doc?.96:n===1?.9:lerp(.22,.95,i/(n-1)),jr=r(),jl=r();let best=null;
+    const shifts=k.doc?[0]:[0,.03,-.03,.06,-.06,.1,-.1],muls=k.doc?[1]:[1,1.5,2.1];
+    outer:for(const mul of muls)for(const sd of[side,-side])for(const sh of shifts){const t=clamp(base+sh,.12,.98),q=along(pts,t),tang=Math.atan2(q.ty,q.tx),ang=k.doc?tang:tang+sd*lerp(.75,1,jr),L=k.doc?22:lerp(34,52,jl)*mul,tip={x:q.x+Math.cos(ang)*L,y:q.y+Math.sin(ang)*L},al=k.doc?(Math.cos(tang)>=0?'left':'right'):(Math.cos(ang)<-.15?'right':'left'),rect=rectFor(k,tip,al);
+      let bad=0;for(const o of placed)if(hit(o,rect,14))bad+=3;for(const o of obs.rects)if(hit(o,rect,k.doc?6:30))bad+=3;if(node.rect&&hit(node.rect,rect,k.doc?6:20))bad+=3;
+      bad+=ptsIn(obs.pts,rect,k.doc?2:10)*(k.doc?.2:1)+ptsIn(pts,rect,4);if(!k.doc){if(rect.y+rect.h>-6)bad+=4;for(const c of obs.soft)if(distRect(c.x,c.y,rect)<c.R*.9)bad+=1}
+      if(!best||bad<best.bad)best={bad,t:t*.9,side:sd,twig:{from:{x:q.x,y:q.y},to:tip,angle:ang},align:al,rect};if(bad===0)break outer}
+    conflicts+=best.bad;placed.push(best.rect);out.push({k,at:best});if(!k.doc)side=-best.side});
+  return{out,conflicts}}
+function buildChild(node){const obs=obstacles(node),tg=node.twig,o={x:lerp(tg.from.x,tg.to.x,node.parent===root?.66:.8),y:lerp(tg.from.y,tg.to.y,node.parent===root?.66:.8)},s=Math.cos(tg.angle)>=0?1:-1,nk=node.kids.filter(k=>!k.doc).length||1;
+  const base=narrow?Math.min(Math.max(150,vh*.5),150+42*nk):Math.min(clamp(vh*.9,440,780),200+56*nk);let best=null,ci=0;
+  for(const f of[1,-1])for(const steep of[62,50,74,35,22])for(const lf of[1,.8,1.25]){const r=rng(SEED*7919+node.id*104729+ci*31),a0=tg.angle-f*s*steep*PI/180,a1=tg.angle-f*s*.15,pts=curvePts(o,a0,a1,base*lf,.03,r);let score=ci*.4;ci++;
+    for(let i=4;i<pts.length;i++){const q=pts[i];if(q.y>-16)score+=4;for(const rc of obs.rects)if(q.x>rc.x-30&&q.x<rc.x+rc.w+30&&q.y>rc.y-30&&q.y<rc.y+rc.h+30)score+=2;for(const c of obs.soft)if(Math.hypot(q.x-c.x,q.y-c.y)<c.R*1.2)score+=1.2}
+    for(const q of obs.pts){for(let i=6;i<pts.length;i+=2)if(Math.abs(q.x-pts[i].x)<8&&Math.abs(q.y-pts[i].y)<8){score+=2.5;break}}
+    const pl=placeKids(node,pts,obs,r);score+=pl.conflicts*10;if(!best||score<best.score)best={score,pts,pl,len:base*lf,r};if(score<1)break}
+  for(const e of best.pl.out)Object.assign(e.k,e.at);node.branch={pts:best.pts,len:best.len};
+  const r=rng(1301+node.id*7),limbs=[],clusters=[],sprays=[],pts=best.pts,len=best.len,rects=node.kids.map(k=>k.rect).concat(node.rect?[node.rect]:[],obs.rects);
+  limbs.push({p:pts.map(q=>({x:q.x,y:q.y,t:q.t*.92,w:lerp(3.8*P.sc,1.3,Math.pow(q.t,.75))}))});
+  const near=(x,y)=>{let m=1e9;for(const rc of rects)m=Math.min(m,distRect(x,y,rc));return m};
+  const step=P.R*.92,m=Math.max(2,Math.floor(len*.84/step));let sd=r()<.5?-1:1;
+  for(let z=0;z<m;z++){const u=.12+.8*(z+.5)/m+(r()-.5)*.04,q=along(pts,u);let R=P.R*lerp(.9,.55,u)*(.85+r()*.3);const off=R*(.3+r()*.25),sl=(r()-.2)*R*.5,at=s2=>({x:q.x-q.ty*s2*off+q.tx*sl,y:q.y+q.tx*s2*off+q.ty*sl});let c=at(sd);if(near(c.x,c.y)<R+6&&near(at(-sd).x,at(-sd).y)>near(c.x,c.y)){sd=-sd;c=at(sd)}const d=near(c.x,c.y);if(d<R*1.3+6)R=Math.max(0,(d-6)/1.3);
+    if(R>=7){limbs.push(quadLimb({x:q.x,y:q.y},{x:lerp(q.x,c.x,.5)+q.tx*3,y:lerp(q.y,c.y,.5)+q.ty*3},c,1.8*P.sc,1.1,u*.92,u*.92+.03,4));clusters.push(cluster(c.x,c.y,R,u*.92+.035,r))}sd=-sd}
+  for(const k of node.kids)twigGeo(node,k,limbs,sprays,r);
+  node.geo={limbs,clusters,sprays}}
+function bbox(node,kidsOnly){let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;const add=(x,y)=>{x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y)};if(!kidsOnly){for(const q of node.branch.pts)add(q.x,q.y);if(node.rect){add(node.rect.x,node.rect.y);add(node.rect.x+node.rect.w,node.rect.y+node.rect.h)}}for(const k of node.kids)if(k.rect){add(k.rect.x,k.rect.y);add(k.rect.x+k.rect.w,k.rect.y+k.rect.h)}return{x0,x1,y0,y1}}
+function frameCam(node,snap){if(node===root){const s=rootSpot();cam.tx=-s.x;cam.ty=-s.y}else{const a=bbox(node),b=bbox(node,true),m=Math.min(48,vw*.06)+inset,fit=(g,pp,d,E,f,L,k)=>pp-g<=f-L-k?(g+pp)/2-(f+L-k)/2-L:Math.min(d-L,Math.max(g-L,E+k-f));cam.tx=fit(a.x0,a.x1,b.x0,b.x1,vw,m,m);cam.ty=fit(a.y0,a.y1,b.y0,b.y1,vh,m+8,m+44)}if(snap||reduce){cam.x=cam.tx;cam.y=cam.ty}need=true}
+const deepest=n=>{for(const k of n.kids)if(k.isDir&&k.open)return deepest(k);return n};
+function closeAll(n){n.open=false;for(const k of n.kids)if(k.isDir&&k.open)closeAll(k)}
+function openNode(n){if(!n.isDir||n.open)return;for(const k of n.parent.kids)if(k!==n&&k.isDir&&k.open)closeAll(k);if(!n.branch||n.g<=0)buildChild(n);n.open=true;active=deepest(root);frameCam(n)}
+function closeNode(n){if(!n.isDir||!n.open||n===root)return;closeAll(n);active=deepest(root);frameCam(n.parent)}
+const back=()=>{if(active!==root)closeNode(active)};
+
+/* ---------------------------------------------------------------- ground */
+const TILE=420,tiles=new Map();
+function surfaceGeo(i){const r=rng(Math.floor(hash(i,-1,3)*4294967296)),sc=narrow?.85:clamp(vh/900,.9,1.4),x0=i*TILE,limbs=[],clusters=[],sprays=[];
+  const dens=x=>Math.pow(n2(x/150,.5,31),1.8)*1.3+.35*n2(x/40,1.5,32)+.6*Math.exp(-Math.abs(x)/(P.W*.9));
+  const nb=Math.round(TILE*(narrow?.9:1.1));for(let k=0;k<nb;k++){const x=x0+r()*TILE,d=dens(x),hh=(3+r()*7+d*(10+r()*34))*sc,lean=(r()-.5)*1.3+Math.sign(x)*.15;limbs.push(quadLimb({x,y:3},{x:x+lean*hh*.25,y:-hh*.6},{x:x+lean*hh,y:-hh},(2.6+r()*2.8)*sc,.5,0,0,4))}
+  const nf=Math.round(TILE/(narrow?45:55));for(let k=0;k<nf;k++){const x=x0+r()*TILE;if(Math.abs(x)<P.trunkW*2.5||r()>.25+dens(x)*.6)continue;const m=1+Math.floor(r()*r()*6);for(let j=0;j<m;j++){const xx=x+(r()-.5)*22*sc,hh=(28+r()*r()*110)*sc*(.6+.5*dens(xx)),lean=(r()-.5)*.7,a={x:xx,y:3},c={x:xx+lean*hh*.3,y:-hh*.55},b={x:xx+lean*hh*.8,y:-hh};limbs.push(quadLimb(a,c,b,3*sc,1.2,0,0,8));if(r()<.75)sprays.push(spray(a,c,b,.7,1,6+Math.floor(r()*5),(4.5+r()*2.5)*sc,0,r));else clusters.push(cluster(b.x,b.y,(4+r()*4)*sc,0,r,.75,2))}}
+  const nfe=narrow?(r()<.35?1:0):Math.floor(r()*2.4);for(let k=0;k<nfe;k++){const x=x0+20+r()*(TILE-40);if(Math.abs(x)<P.W*.6)continue;const sd=x<0?-1:1,hh=(36+r()*40)*sc,a={x,y:3},c={x:x+sd*hh*.25,y:-hh*.95},b={x:x+sd*hh*.85,y:-hh*.5};limbs.push(quadLimb(a,c,b,3.6*sc,1,0,0,12));sprays.push(spray(a,c,b,.1,1,16+Math.floor(r()*6),(9+r()*4)*sc,0,r))}
+  const nbu=r()<.6?1+(r()<.4?1:0):0;for(let k=0;k<nbu;k++){const x=x0+r()*TILE;if(Math.abs(x)<P.W*1.2)continue;const R=P.R*(.55+r()*.6)*(narrow?.9:1);clusters.push(cluster(x,-R*.3,R,0,r));if(r()<.6)clusters.push(cluster(x+(r()-.5)*R*1.6,-R*.15,R*.7,0,r,.8))}
+  return{limbs,clusters,sprays}}
+function soilGeo(i,j){const r=rng(Math.floor(hash(i,j,7)*4294967296)),sc=narrow?.85:clamp(vh/900,.9,1.3),x0=i*TILE,y0=j*TILE,x1=x0+TILE,y1=y0+TILE,ym=(y0+y1)/2,limbs=[],polys=[],dashes=[];
+  const pick=(m,top=0)=>({x:x0+m+r()*(TILE-2*m),y:Math.max(y0+m,top)+r()*Math.max(1,y1-m-Math.max(y0+m,top))});
+  if(j===0){const nrt=Math.round(TILE*.5);for(let k=0;k<nrt;k++){let x=x0+r()*TILE,y=2,a=PI/2+(r()-.5);const len=(4+r()*r()*26)*sc,w=(1.6+r()*1.4)*sc,pp=[{x,y,w,t:0}];for(let q=1;q<=4;q++){a+=(r()-.5)*.6;x+=Math.cos(a)*len/4;y=Math.max(2,y+Math.sin(a)*len/4);pp.push({x,y,w:w*(1-q/5),t:0})}limbs.push({p:pp})}
+    const ns=Math.round(TILE*1.4);for(let k=0;k<ns;k++){const y=2-Math.log(1-r()*.999)*16*sc;if(y>y1-4)continue;polys.push(blob(x0+r()*TILE,y,(.5+r()*r()*1.8)*sc,r,5,.3))}}
+  const first=Math.max(0,Math.floor((y0-240)/270)),last=Math.ceil((y1-60)/270);
+  for(let w=first;w<=last;w++){const by=150+w*270+60*(hash(w,0,70)-.5),yy=x=>by+18*sc*n1(x/170+w*13.1,72)+5*sc*n1(x/37+w*5.3,73),kind=Math.floor(hash(w,1,74)*3),st=[8,6,13][kind];
+    for(let x=Math.ceil(x0/st)*st;x<x1;x+=st){if(n1(x/110+w*3.3,76)<=-.35)continue;const e=hash(x/st,w,77),y=yy(x);if(y<y0||y>=y1)continue;if(kind===0&&e<.8)dashes.push([x,y,x+(2+e*5)*sc,yy(x+5),1.3*sc]);else if(kind===1&&e<.85)polys.push(blob(x,y,.95*sc,r,5,.2));else if(kind===2&&e<.6)polys.push(blob(x,y+(hash(x,w,78)-.5)*6*sc,(1.2+hash(x,w,79)*2.6)*sc,r,7))}}
+  const np=Math.round(18+14*Math.exp(-ym/600));for(let k=0;k<np;k++){const q=pick(4,24);polys.push(blob(q.x,q.y,(1.3+r()*r()*9)*sc,r,8,.2,.65+r()*.3))}
+  if(r()<.45){const q=pick(40,40),R=(18+r()*24)*sc,m=16+Math.floor(r()*22);for(let k=0;k<m;k++){const a=r()*TAU,d=Math.sqrt(r());polys.push(blob(q.x+Math.cos(a)*R*d,q.y+Math.sin(a)*R*.35*d,(.6+r()*1.1)*sc,r,5))}}
+  const nst=(r()<.6?1:0)+(r()<.25?1:0);for(let k=0;k<nst;k++){const R=(13+r()*26)*sc,q=pick(R+6,60);polys.push(blob(q.x,q.y,R,r,14,.14,.62+r()*.23))}
+  if(r()<.14){const q=pick(30,50);let x=q.x,y=q.y,a=r()*TAU;const m=28+Math.floor(r()*32);for(let k=0;k<m;k++){a+=(r()-.5)*.7;x+=Math.cos(a)*4.5*sc;y=Math.max(y0+8,y+Math.sin(a)*4.5*sc);polys.push(blob(x,y,.85*sc,r,5))}}
+  return{limbs,clusters:[],sprays:[],polys,dashes}}
+function tile(key,make){let t=tiles.get(key);if(!t){t={geo:make()};tiles.set(key,t);if(tiles.size>300)tiles.delete(tiles.keys().next().value)}return geoCache(t.geo)}
+function drawGround(ctx,vx,vy,g){const i0=Math.floor((vx-140)/TILE),i1=Math.floor((vx+vw+140)/TILE);ctx.save();if(g<1){const L=clamp((g*1.1-.01)/.12,0,1)*Math.max(300,vw*.7)+24;ctx.beginPath();ctx.rect(-L,-2000,2*L,9000);ctx.clip()}
+  ctx.globalCompositeOperation='lighter';
+  if(vy+vh>-300&&vy<40)for(let i=i0;i<=i1;i++){const c=tile('m'+i,()=>surfaceGeo(i));if(c)ctx.drawImage(c.cv,c.x,c.y,c.w,c.h)}
+  if(vy+vh>0){const j0=Math.max(0,Math.floor((vy-60)/TILE)),j1=Math.floor((vy+vh+60)/TILE);for(let j=j0;j<=j1;j++)for(let i=i0;i<=i1;i++){const c=tile('s'+i+':'+j,()=>soilGeo(i,j));if(c)ctx.drawImage(c.cv,c.x,c.y,c.w,c.h)}}
+  ctx.restore();ctx.globalCompositeOperation='source-over'}
+
+/* ---------------------------------------------------------------- shader */
+const VS='attribute vec2 aPos;varying vec2 vUv;void main(){vUv=aPos*.5+.5;gl_Position=vec4(aPos,0.,1.);}';
+const FS=`precision highp float;
+varying vec2 vUv;uniform sampler2D uInk;uniform vec2 uRes,uCam,uPar;uniform float uDpr,uLeaf,uFrameW;uniform vec3 uPaper,uInkCol;
+float h21(vec2 p){p=fract(p*vec2(123.34,456.21));p+=dot(p,p+45.32);return fract(p.x*p.y);}
+float vn(vec2 p){vec2 i=floor(p),f=fract(p);vec2 u=f*f*(3.-2.*f);return mix(mix(h21(i),h21(i+vec2(1.,0.)),u.x),mix(h21(i+vec2(0.,1.)),h21(i+vec2(1.,1.)),u.x),u.y);}
+float fbm(vec2 p){float s=.5*vn(p);p=p*2.03+7.1;s+=.25*vn(p);p=p*2.03+7.1;s+=.125*vn(p);return s*1.0667;}
+float speck(vec2 w,float cs,float prob,float r0,float r1,float seed){vec2 c=floor(w/cs);vec2 cp=(c+vec2(h21(c+seed),h21(c+seed+4.6)))*cs;float rad=r0+(r1-r0)*h21(c+seed+9.2)*h21(c+seed+2.7);float on=step(1.-prob,h21(c+seed+17.));return on*(1.-smoothstep(rad-.4,rad+.4,length(w-cp)));}
+float leafField(vec2 p,float S){vec2 g=p/S;vec2 i=floor(g),f=fract(g);float best=-4.;for(int y=-1;y<=1;y++)for(int x=-1;x<=1;x++){vec2 o=vec2(float(x),float(y));vec2 c=i+o;vec2 q=o+vec2(h21(c+1.3),h21(c+7.9))-f;float a=h21(c+4.1)*3.14159;vec2 u=vec2(cos(a),sin(a));float len=.68+.38*h21(c+9.7);float d=length(vec2(dot(q,u)/len,dot(q,vec2(-u.y,u.x))/(len*.48)));best=max(best,1.-d);}return best;}
+void main(){
+  vec2 dev=vec2(vUv.x,1.-vUv.y)*uRes;vec2 w=dev/uDpr+uCam;
+  vec2 d1=vec2(vn(w*.5),vn(w*.5+31.7))-.5;vec2 d2=vec2(vn(w*2.2+3.1),vn(w*2.2+8.9))-.5;
+  vec2 px=vec2(uDpr)/uRes;vec2 off=(d1*1.4+d2*.7)*.5;vec2 uv=vUv+vec2(off.x,-off.y)*px;
+  vec4 c0=texture2D(uInk,uv);
+  vec4 cs=texture2D(uInk,uv+vec2(px.x,0.)*.5)+texture2D(uInk,uv-vec2(px.x,0.)*.5)+texture2D(uInk,uv+vec2(0.,px.y)*.5)+texture2D(uInk,uv-vec2(0.,px.y)*.5);
+  float th=.42+(vn(w*.9+11.)-.5)*.14;
+  float cov=smoothstep(th-.07,th+.07,c0.r*.5+cs.r*.125);
+  float F=min((c0.g*.6+cs.g*.1)*1.1,1.3);
+  if(F>.02){float lf=leafField(w,uLeaf);float hn=fbm(w*.06+23.);float v=F+(clamp(lf,-.6,1.)-.45)*.55-(hn-.5)*.95;cov=max(cov,smoothstep(.494,.506,v));}
+  float thin=smoothstep(.42,.78,fbm(w*.011+9.));
+  vec2 wp=floor(w*uDpr);
+  float pore=step(1.-.045*(.45+2.2*thin),h21(wp+3.));
+  float pin=speck(w,7.,.035*(.6+2.*thin),.3,.95,51.);
+  cov*=1.-max(pore*.75,pin*.9);
+  vec2 wb=w+uPar;
+  float grain=(h21(floor(wb*uDpr))-.5)*.05;float mott=(fbm(wb*.004)-.5)*.035;
+  vec3 paper=uPaper*(1.+grain+mott);
+  paper*=1.-speck(wb,11.,.028,.35,1.3,13.)*.35;
+  float stray=speck(wb,17.,.022,.3,.9,77.);
+  float ig=(h21(wp+19.)-.5)*.1+(vn(w*1.6+5.)-.5)*.07;
+  vec3 ink=uInkCol*(1.+ig-thin*.035);
+  vec3 col=mix(paper,ink,clamp(max(cov,stray*.85),0.,1.));
+  vec2 sp=dev/uDpr;vec2 V=uRes/uDpr;
+  float d=min(min(sp.x,V.x-sp.x),min(sp.y,V.y-sp.y));
+  vec3 back=uPaper*.42;back*=1.+(h21(floor(dev)+61.)-.5)*.12+(vn(sp*.04+3.)-.5)*.1;
+  float inside=smoothstep(uFrameW-.5,uFrameW+.5,d);
+  back+=uPaper*.22*(1.-smoothstep(0.,1.4,abs(d-(uFrameW-1.6))));
+  col*=1.-.38*exp(-max(d-uFrameW,0.)/6.)*inside;
+  gl_FragColor=vec4(mix(back,col,inside),1.);
+}`;
+const hex=s=>[1,3,5].map(i=>parseInt(s.slice(i,i+2),16)/255);
+let printer=null;
+function makePrinter(){let gl=null;try{gl=cv.getContext('webgl',{antialias:false,premultipliedAlpha:false,preserveDrawingBuffer:true})}catch(e){}
+  if(gl){try{const sh=(type,src)=>{const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw new Error(gl.getShaderInfoLog(s));return s},pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,VS));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,FS));gl.linkProgram(pr);if(!gl.getProgramParameter(pr,gl.LINK_STATUS))throw new Error(gl.getProgramInfoLog(pr));gl.useProgram(pr);
+    const buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);const loc=gl.getAttribLocation(pr,'aPos');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+    const tex=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,tex);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL,true);gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,true);
+    const U={};for(const n of['uInk','uRes','uCam','uPar','uDpr','uLeaf','uFrameW','uPaper','uInkCol'])U[n]=gl.getUniformLocation(pr,n);gl.uniform1i(U.uInk,0);gl.uniform3fv(U.uPaper,hex(PAPER));gl.uniform3fv(U.uInkCol,hex(INK));
+    return{gl:true,render(mask,c,par){gl.viewport(0,0,cv.width,cv.height);if(mask)gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,mask);gl.uniform2f(U.uRes,cv.width,cv.height);gl.uniform1f(U.uDpr,dpr);gl.uniform2f(U.uCam,c.x,c.y);gl.uniform2f(U.uPar,par.x,par.y);gl.uniform1f(U.uLeaf,P.leaf*.68);gl.uniform1f(U.uFrameW,frameW);gl.drawArrays(gl.TRIANGLE_STRIP,0,4)}}}catch(e){console.warn('shader failed',e)}}
+  const c2=cv.getContext('2d');if(!c2)return{gl:false,render(){}};let tmp=null;
+  return{gl:false,render(mask){if(!mask)return;if(!tmp)tmp=document.createElement('canvas');tmp.width=mask.width;tmp.height=mask.height;const x=tmp.getContext('2d');x.drawImage(mask,0,0);x.globalCompositeOperation='source-in';x.fillStyle=INK;x.fillRect(0,0,tmp.width,tmp.height);c2.setTransform(1,0,0,1,0,0);c2.fillStyle=PAPER;c2.fillRect(0,0,cv.width,cv.height);c2.drawImage(tmp,0,0);c2.strokeStyle='#121113';c2.lineWidth=frameW*2*dpr;c2.strokeRect(0,0,cv.width,cv.height)}}}
+
+/* ------------------------------------------------------------------ draw */
+let mask=null,mx=null,lastCam={x:0,y:0};
+function wobble(ctx,x,y,w,seed,lw=1.5){ctx.beginPath();for(let i=0;i<=12;i++){const u=i/12,px=x+(w+2)*u-1,py=y+n1(u*3+seed,21)*.8;i?ctx.lineTo(px,py):ctx.moveTo(px,py)}ctx.lineWidth=lw;ctx.stroke()}
+function brush(ctx,x0,x1,y,k,seed){const w=x1-x0,top=[],bot=[];for(let i=0;i<=18;i++){const u=i/18*k,x=x0+w*u,yy=y+n1(u*2.2+seed*.37,91)*1.6-u*1.2,hw=.5+1.25*Math.pow(Math.sin(PI*Math.min(1,u/Math.max(k,.001)*.94+.03)),.45)*(.85+.3*n1(u*6+seed,92));top.push(x,yy-hw);bot.push(x,yy+hw)}ctx.beginPath();ctx.moveTo(top[0],top[1]);for(let i=2;i<top.length;i+=2)ctx.lineTo(top[i],top[i+1]);for(let i=bot.length-2;i>=0;i-=2)ctx.lineTo(bot[i],bot[i+1]);ctx.closePath();ctx.fill()}
+function pill(ctx,x,y,w,hh){const r=hh/2;ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.arc(x+w-r,y+r,r,-PI/2,PI/2);ctx.lineTo(x+r,y+hh);ctx.arc(x+r,y+r,r,PI/2,PI*1.5);ctx.closePath()}
+function collect(cx,cy){const items=[];hits=[];links=[];
+  const visit=pn=>{if(!pn.branch||pn.g<=0)return;for(const d of pn.kids){
+    if(d.doc){if(d.typed<=0||!d.rect)continue;const L=layoutDoc(d),x=d.rect.x-cx,y=d.rect.y-cy,chars=Math.ceil(L.chars*d.typed);items.push({doc:L,node:d,x,y,chars});
+      for(const ln of L.lines)for(const s of ln.segs)if(s.href&&chars>=s.c0+s.s.length)links.push({x:x+s.x,y:y+ln.y,w:s.w,h:L.lh,href:s.href,label:s.s,key:d.id+':'+s.c0});continue}
+    if(!d.rect||d.t>pn.g)continue;const reveal=Math.min(d.fold,pn.g>=.999?1:clamp((pn.g-d.t)*8,0,1));if(reveal<=.001){if(d.isDir)visit(d);continue}
+    const full=d.isDir&&d.open?d.name+'.':d.name,r={x:d.rect.x-cx,y:d.rect.y-cy,w:d.rect.w,h:d.rect.h};
+    items.push({node:d,text:full.slice(0,Math.ceil(full.length*reveal)),full,r,strong:d.isDir&&d.open,align:d.align});
+    if(d.fold>=.999&&pn.g>=.999){if(d.isDir)hits.push({node:d,x:r.x,y:r.y,w:r.w,h:r.h});else if(d.href)links.push({x:r.x,y:r.y,w:r.w,h:r.h,href:d.href,label:d.name,key:'n'+d.id})}
+    if(d.isDir)visit(d)}};
+  visit(root);return items}
+function renderMask(){const ctx=mx,cx=Math.round(cam.x*dpr)/dpr,cy=Math.round(cam.y*dpr)/dpr;lastCam={x:cx,y:cy};
+  ctx.setTransform(1,0,0,1,0,0);ctx.globalCompositeOperation='source-over';ctx.globalAlpha=1;ctx.clearRect(0,0,mask.width,mask.height);
+  ctx.setTransform(dpr,0,0,dpr,-cx*dpr,-cy*dpr);ctx.fillStyle=RED;ctx.strokeStyle=RED;
+  if(root.g>0)drawGround(ctx,cx,cy,root.g);
+  const vis=[];const walk=n=>{if(!n.branch||!n.geo||n.g<=0)return;vis.push(n);for(const k of n.kids)if(k.isDir)walk(k)};walk(root);
+  for(const b of vis){if(b.g>=1){const c=geoCache(b.geo);if(c){ctx.globalCompositeOperation='lighter';ctx.drawImage(c.cv,c.x,c.y,c.w,c.h);ctx.globalCompositeOperation='source-over'}}else drawGeo(ctx,b.geo,b.g*1.1,'base');
+    for(const k of b.kids){if(!k.twig)continue;if(!k.doc&&k.fold<=.001)continue;let g=b.g>=1?1.3:b.g*1.1;if(!k.doc&&k.fold<1)g=Math.min(g,k.t+(b===root?.06:.04)*k.fold);drawGeo(ctx,b.geo,g,k)}}
+  ctx.setTransform(dpr,0,0,dpr,0,0);const items=collect(cx,cy);
+  ctx.lineJoin='round';ctx.lineCap='round';ctx.textBaseline='middle';
+  /* halos */
+  ctx.globalCompositeOperation='destination-out';ctx.lineWidth=fs*.7;
+  for(const it of items){if(it.doc){ctx.textAlign='left';for(const ln of it.doc.lines){const y=it.y+ln.y+it.doc.lh/2;if(y<-30||y>vh+30)continue;if(it.chars>ln.segs[0].c0)ctx.fillRect(it.x-10,y-it.doc.lh/2-1,ln.end+20,it.doc.lh+2);ctx.font=font(fs,ln.kind==='h'?700:500);for(const s of ln.segs)ctx.strokeText(s.s,it.x+s.x,y)}}
+    else if(it.text){ctx.font=font(fs,it.strong?700:500);ctx.textAlign=it.align==='right'?'right':'left';ctx.strokeText(it.full,it.align==='right'?it.r.x+it.r.w:it.r.x,it.r.y+it.r.h/2)}}
+  /* ink */
+  ctx.globalCompositeOperation='source-over';ctx.fillStyle=RED;ctx.strokeStyle=RED;
+  for(const it of items){if(it.doc){const D=it.doc;ctx.textAlign='left';
+      for(const ln of D.lines){if(!ln.segs.length||it.chars<=ln.segs[0].c0)continue;const y=it.y+ln.y+D.lh/2;if(y<-30||y>vh+30)continue;ctx.font=font(fs,ln.kind==='h'?700:500);if(ln.bullet)ctx.fillText('·',it.x+Math.round(fs*.25),y);
+        for(const s of ln.segs){const k=it.chars-s.c0;if(k<=0)break;ctx.fillText(k>=s.s.length?s.s:s.s.slice(0,k),it.x+s.x,y);if(s.href&&k>=s.s.length){if(hoverLink===it.node.id+':'+s.c0)wobble(ctx,it.x+s.x,y+fs*.62,s.w,s.c0,1.6);else ctx.fillRect(it.x+s.x,y+fs*.58,s.w,1)}}
+        for(let i=0;i<ln.segs.length;){const m=ln.segs[i].mark;let j=i;while(m&&j+1<ln.segs.length&&ln.segs[j+1].mark===m)j++;if(m){const a=ln.segs[i],b=ln.segs[j],k=it.chars>=D.chars?1:clamp((it.chars-(b.c0+b.s.length))/10,0,1);if(k>0)brush(ctx,it.x+a.x-2,it.x+b.x+b.w+3,y+fs*.66,k,m)}i=j+1}}}
+    else if(it.text){ctx.font=font(fs,it.strong?700:500);const wfull=ctx.measureText(it.full).width;ctx.textAlign='left';const x=it.align==='right'?it.r.x+it.r.w-wfull:it.r.x;ctx.fillText(it.text,x,it.r.y+it.r.h/2);
+      if((hoverNode===it.node||hoverLink==='n'+it.node.id)&&it.text===it.full)wobble(ctx,x,it.r.y+it.r.h+1,wfull,it.node.id)}}
+  /* back pill */
+  backBox=null;if(active!==root){const hh=Math.round(fs*1.95),w=Math.round(hh*1.8),x=Math.max(16,vw*.03)+inset,cyy=vh-Math.max(22,vh*.035)-inset,y=Math.round(cyy-hh/2);backBox={x,y,w,h:hh};
+    ctx.globalCompositeOperation='destination-out';pill(ctx,x-6,y-6,w+12,hh+12);ctx.fill();ctx.globalCompositeOperation='source-over';ctx.fillStyle=RED;pill(ctx,x,y,w,hh);ctx.fill();
+    ctx.globalCompositeOperation='destination-out';const sh=hoverBack?-2.5:0,xa=x+hh*.42+sh,xb=x+w-hh*.4+sh,mid=xb-xa;ctx.beginPath();limbPath(ctx,quadLimb({x:xb,y:cyy+1.2},{x:xa+mid*.5,y:cyy+2.2},{x:xa+2.5,y:cyy},3,1.8,0,0,10),1);almond(ctx,xa+hh*.2,cyy-hh*.13,-.7,hh*.4,hh*.15);almond(ctx,xa+hh*.2,cyy+hh*.13,.7,hh*.4,hh*.15);almond(ctx,xa+mid*.62,cyy-hh*.15,-1.05,hh*.3,hh*.11);ctx.moveTo(xb+2.2,cyy+1.2);ctx.arc(xb,cyy+1.2,2.2,0,TAU);ctx.fill();ctx.globalCompositeOperation='source-over'}
+  syncLinks()}
+let linkSig='';
+function syncLinks(){const sig=links.map(l=>l.key+'@'+Math.round(l.x)+','+Math.round(l.y)).join('|');if(sig===linkSig)return;linkSig=sig;
+  while(linkBox.children.length<links.length){const a=document.createElement('a');a.rel='noopener';linkBox.appendChild(a)}
+  [...linkBox.children].forEach((a,i)=>{const l=links[i];if(!l){a.style.display='none';a.removeAttribute('href');return}a.style.display='block';a.href=l.href;if(l.href.startsWith('mailto:'))a.removeAttribute('target');else a.target='_blank';a.setAttribute('aria-label',l.label);a.dataset.key=l.key;a.style.left=(l.x-4)+'px';a.style.top=(l.y-3)+'px';a.style.width=(l.w+8)+'px';a.style.height=(l.h+6)+'px'})}
+
+/* ------------------------------------------------------------- animation */
+const par={x:0,y:0,tx:0,ty:0};
+const foldT=k=>(k.isDir&&k.open)||k.parent===active?1:0;
+let last=0;
+function tick(now){const dt=Math.min(.05,(now-last)/1000);last=now;let changed=need;need=false;
+  const step=n=>{const tg=n.open?1:0;if(n.u!==tg){changed=true;if(reduce)n.u=tg;else{const dur=n===root?1.9:n.open?1.1:.55;n.u=n.open?Math.min(1,n.u+dt/dur):Math.max(0,n.u-dt/dur)}}n.g=n.open?easeOut(n.u):easeIO(n.u);
+    for(const k of n.kids){if(k.isDir)step(k);if(!k.doc){const ft=foldT(k);if(k.foldU!==ft){changed=true;k.foldU=reduce?ft:ft?Math.min(1,k.foldU+dt/.55):Math.max(0,k.foldU-dt/.4)}k.fold=easeIO(k.foldU)}
+      else{const tt=n.open&&n.g>=k.t?1:0;if(k.typed!==tt){changed=true;if(reduce)k.typed=tt;else{const ch=layoutDoc(k).chars;k.typed=tt?Math.min(1,k.typed+dt*Math.max(220,ch/4.2)/ch):Math.max(0,k.typed-dt*4)}}}}};
+  step(root);
+  if(cam.x!==cam.tx||cam.y!==cam.ty){changed=true;const e=1-Math.pow(.03,dt);cam.x+=(cam.tx-cam.x)*e;cam.y+=(cam.ty-cam.y)*e;if(Math.abs(cam.tx-cam.x)<.05&&Math.abs(cam.ty-cam.y)<.05){cam.x=cam.tx;cam.y=cam.ty}}
+  let pm=false;if(par.x!==par.tx||par.y!==par.ty){pm=true;const e=1-Math.exp(-dt*5);par.x+=(par.tx-par.x)*e;par.y+=(par.ty-par.y)*e;if(Math.abs(par.tx-par.x)<.2&&Math.abs(par.ty-par.y)<.2){par.x=par.tx;par.y=par.ty}}
+  const pr={x:Math.round(par.x*dpr)/dpr,y:Math.round(par.y*dpr)/dpr};
+  if(changed){renderMask();printer.render(mask,lastCam,pr)}else if(pm)printer.render(null,lastCam,pr);
+  requestAnimationFrame(tick)}
+
+/* ----------------------------------------------------------------- input */
+function pick(list,x,y,px,py){let best=null,bd=1e9;for(const g of list){const dx=Math.max(g.x-x,0,x-(g.x+g.w)),dy=Math.max(g.y-y,0,y-(g.y+g.h));if(dx>px||dy>py)continue;const d=Math.hypot(dx,dy);if(d<bd){bd=d;best=g}}return best}
+const overBack=(x,y)=>!!backBox&&x>=backBox.x-4&&x<=backBox.x+backBox.w+4&&y>=backBox.y-3&&y<=backBox.y+backBox.h+3;
+function scrollBy(dy){if(active===root)return;const b=bbox(active),lo=b.y0-70,hi=b.y1+70-vh;if(hi<=lo)return;cam.ty=clamp(cam.ty+dy,Math.min(lo,cam.ty),Math.max(hi,cam.ty));need=true}
+let drag=null,dragged=false;
+addEventListener('wheel',e=>{e.preventDefault();scrollBy(e.deltaY)},{passive:false});
+addEventListener('pointerdown',e=>{dragged=false;if(e.pointerType!=='mouse')drag={y:e.clientY}});
+addEventListener('pointerup',()=>drag=null);addEventListener('pointercancel',()=>drag=null);
+addEventListener('pointermove',e=>{if(drag){const d=drag.y-e.clientY;if(dragged||Math.abs(d)>6){dragged=true;drag.y=e.clientY;scrollBy(d);cam.y=cam.ty}}
+  const x=e.clientX,y=e.clientY,l=pick(links,x,y,8,6),hd=l?null:pick(hits,x,y,18,12),hn=hd?hd.node:null,hl=l?l.key:null,hb=overBack(x,y);
+  if(hn!==hoverNode||hl!==hoverLink||hb!==hoverBack){hoverNode=hn;hoverLink=hl;hoverBack=hb;need=true}cv.style.cursor=hn||hb?'pointer':'default';
+  if(e.pointerType==='mouse'&&!reduce){par.tx=-(x/vw-.5)*14;par.ty=-(y/vh-.5)*14*.6}});
+document.addEventListener('pointerleave',()=>{hoverNode=null;hoverLink=null;hoverBack=false;need=true});
+cv.addEventListener('click',e=>{if(dragged){dragged=false;return}const x=e.clientX,y=e.clientY;if(overBack(x,y))return back();const hd=pick(hits,x,y,18,12);if(!hd)return back();hd.node.open?closeNode(hd.node):openNode(hd.node)});
+linkBox.addEventListener('click',e=>{if(dragged){e.preventDefault();dragged=false}});
+addEventListener('keydown',e=>{if(e.key==='Escape'||e.key==='Backspace')back()});
+
+/* ------------------------------------------------------------------ boot */
+function resize(){vw=innerWidth;vh=innerHeight;dpr=Math.max(1,Math.min(2,devicePixelRatio||1));narrow=vw<700;fs=narrow?14:15;frameW=narrow?9:16;inset=frameW+4;P=params();
+  cv.width=Math.round(vw*dpr);cv.height=Math.round(vh*dpr);cv.style.width=vw+'px';cv.style.height=vh+'px';
+  if(!printer)printer=makePrinter();mask=document.createElement('canvas');mask.width=cv.width;mask.height=cv.height;mx=mask.getContext('2d');
+  tiles.clear();docCache.clear();linkSig='~';
+  buildRoot();const path=[];let n=root;for(;;){const k=n.kids.find(c=>c.isDir&&c.open);if(!k)break;path.push(k);n=k}
+  for(const k of path)buildChild(k);active=deepest(root);frameCam(active,true);need=true}
+addEventListener('resize',resize);
+window.__tree={root,get active(){return active},open(path){let n=root;for(const name of path){n=n.kids.find(k=>k.name===name);if(!n)throw new Error('no such node: '+name);openNode(n)}},back,
+  settle(){const s=n=>{n.u=n.open?1:0;n.g=n.u;for(const k of n.kids){if(k.isDir)s(k);if(k.doc)k.typed=n.open?1:0;else{k.foldU=foldT(k);k.fold=k.foldU}}};s(root);cam.x=cam.tx;cam.y=cam.ty;need=true},
+  scroll(d){scrollBy(d);cam.y=cam.ty},
+  overlaps(){const all=[...hits,...links.filter(l=>l.key[0]==='n')],out=[];for(let i=0;i<all.length;i++)for(let j=i+1;j<all.length;j++)if(hit(all[i],all[j],0))out.push((all[i].node?all[i].node.name:all[i].label)+' / '+(all[j].node?all[j].node.name:all[j].label));return out},
+  cut(){return[...hits,...links.filter(l=>l.key[0]==='n')].filter(g=>g.x<inset||g.x+g.w>vw-inset||g.y<inset||g.y+g.h>vh-inset).map(g=>g.node?g.node.name:g.label)},
+  get info(){return{gl:printer&&printer.gl,hits:hits.map(h=>({name:h.node.name,x:h.x,y:h.y,w:h.w,h:h.h})),links:links.length,cam:{...cam},vw,vh}}};
+const start=()=>{resize();requestAnimationFrame(t=>{last=t;tick(t)})};
+let started=false;const go=()=>{if(!started){started=true;start()}};
+try{document.fonts.load('500 15px "Libre Franklin"').then(()=>document.fonts.load('700 15px "Libre Franklin"')).then(go,go)}catch(e){go()}
+setTimeout(go,1800);
+})();
+</script>
+</body>
+</html>
