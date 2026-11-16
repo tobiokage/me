@@ -75,19 +75,16 @@ const posts={
   p('software developer ii (sde2), backend & ai. jul 2023 to present, bengaluru.'),
   p('subscription order management / sap brim.'),
   h('backend'),
-  li('built OData V4 REST APIs for subscription orders on SAP RAP (CDS views, managed CRUD, custom actions) for a contract engine benchmarked at 250 contracts/sec, scaling linearly with app server instances behind Web Dispatcher.'),
-  li('enhanced asynchronous order-distribution workflows as a state machine (Open, In Process, Finished, Failed, Waiting) with asynchronous external confirmations, routing subscription events to 9+ downstream billing and finance systems.'),
-  li('scaled mass-run item selection 33× (30 to 1,000 items) by moving processing to a background framework with parallel work packages, so users process 1,000+ sales documents in a single run.'),
-  li('integrated subscription orders with downstream charging, revenue accounting, trade compliance and CPQ systems over SOAP, RFC/qRFC and OData, replicating provider contracts to Convergent Charging via a Java SDK.'),
-  li('published asynchronous business events over SAP Event Mesh (AMQP/MQTT) for entitlement provisioning, designing consumers for out-of-order, non-sequenced delivery.'),
+  li('built OData V4 REST APIs for subscription orders on SAP RAP, for a contract engine benchmarked at 250 contracts/sec.'),
+  li('ran order distribution as an asynchronous state machine, routing subscription events to 9+ downstream billing and finance systems.'),
+  li('integrated with charging, revenue accounting, trade compliance and CPQ over SOAP, RFC/qRFC and OData, with business events on SAP Event Mesh.'),
+  li('scaled mass-run item selection 33× (30 to 1,000 items) with background parallel work packages.'),
   h('agentic ai'),
-  li('shipped 4+ agentic AI applications on SAP BTP, including the SOM AI Agent with 12 LangChain tools over S/4HANA OData and the Recurring Receivables Assistant, coordinating Collections, Credit Insights and Dispute agents through stateful LangGraph workflows and JSON-RPC A2A.'),
-  li('built MCP servers that generate tools from OData and OpenAPI metadata; routed agent API calls through an Agent Gateway with OAuth token exchange, principal propagation and tenant-level policies.'),
-  li('engineered RAG pipelines on SAP HANA Vector Engine with chunking, embeddings, HNSW indexing, hybrid semantic and keyword retrieval, and metadata filtering to ground answers in enterprise subscription and contract data.'),
-  li('established Aeval regression testing and CI/CD quality gates across correctness, hallucination, safety and memory, combining mocked tools, deterministic assertions and LLM-as-judge scoring, blocking merges on failures.'),
-  li('integrated SAP Agent Memory Service with LangGraph checkpointing to persist chat history, user knowledge and workflow snapshots, enabling semantic recall, cross-session continuity and resumable human-in-the-loop workflows.'),
-  li('instrumented agents with OpenTelemetry and continuous production evaluations of response quality, tool selection and argument correctness; analyzed completion rates, failures, token consumption and costs via Cloud ALM and Signavio.'),
-  li('eliminated context-overflow failures by pruning 60-field OData records to a 7-field whitelist and adding a request-scoped file cache that passes file IDs to tools, keeping multi-MB document payloads out of the LLM context.')
+  li('shipped 4+ agentic AI applications on SAP BTP, including the SOM AI Agent (12 LangChain tools) and a multi-agent Recurring Receivables Assistant on LangGraph and A2A.'),
+  li('built MCP servers that generate tools from OData and OpenAPI metadata, behind an Agent Gateway with OAuth token exchange and tenant policies.'),
+  li('engineered RAG on SAP HANA Vector Engine with HNSW indexing and hybrid retrieval; added agent memory with LangGraph checkpointing.'),
+  li('set up CI/CD eval gates (mocked tools, assertions, LLM-as-judge) that block merges, with OpenTelemetry tracing and production evals.'),
+  li('eliminated context-overflow failures by pruning 60-field OData records to 7 fields and passing file IDs instead of multi-MB payloads.')
 ]},
 '/exp/samsung/':{blocks:[
   p('research intern, voice intelligence. samsung research institute (sri-b), bengaluru. jul 2022 to dec 2022.'),
@@ -213,7 +210,8 @@ function layoutFull(n){const W=n.parent.isPost?(narrow?Math.min(vw-56,360):440):
 /* long text is split into pages; a "go on" line at the bottom turns the page */
 const viewCache=new Map();
 function pageH(){const m=Math.min(48,vw*.06)+inset;return Math.max(lh()*8,vh-2*m-52-lh()*2-(narrow?0:120))}
-function layoutDoc(n){const F=layoutFull(n),key=n.id+'|'+fs+'|'+F.w+'|'+(n.page||0)+'|'+vh+'|'+F.h;if(viewCache.has(key))return viewCache.get(key);
+const PAGING=false; /* true = split long entries into pages with a "go on" link */
+function layoutDoc(n){if(!PAGING)return layoutFull(n);const F=layoutFull(n),key=n.id+'|'+fs+'|'+F.w+'|'+(n.page||0)+'|'+vh+'|'+F.h;if(viewCache.has(key))return viewCache.get(key);
   const H=pageH(),L=F.lh,items=[...F.lines.map(l=>({y:l.y,b:l.y+L,bi:l.bi,line:l})),...F.imgs.map(i=>({y:i.y,b:i.y+i.h,bi:i.bi,img:i}))].sort((a,b)=>a.y-b.y);
   const pages=[];let cur=[],top=0;
   for(const it of items){const head=it.line&&it.line.kind==='h'&&(!cur.length||cur[cur.length-1].bi!==it.bi);
